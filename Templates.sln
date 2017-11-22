@@ -1,15 +1,19 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.27004.2006
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateSignalrApi", "Signalr\TemplateSignalrApi\TemplateSignalrApi.csproj", "{2DDA20BD-70FD-4D8E-84CC-E2DBA69EBFDA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TemplateSignalrUI", "Signalr\TemplateSignalrUI\TemplateSignalrUI.csproj", "{25CDD898-3B80-465B-B48E-3DEF5369302A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateSignalrUI", "Signalr\TemplateSignalrUI\TemplateSignalrUI.csproj", "{25CDD898-3B80-465B-B48E-3DEF5369302A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Signalr", "Signalr", "{C2C58170-065F-4EAB-97E9-836C182F9AFA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Template", "Template\Template.csproj", "{2DE05FCF-5FE1-45D0-AF21-045D8FFE79B1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Template", "Template\Template.csproj", "{2DE05FCF-5FE1-45D0-AF21-045D8FFE79B1}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateSignalrApi", "Signalr\TemplateSignalrApi\TemplateSignalrApi.csproj", "{7DB2DDF8-924C-4931-B26F-C46FA463000B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateSignalrApiV2", "Signalr\TemplateSignalrApiV2\TemplateSignalrApiV2.csproj", "{BACA308F-052C-4954-970E-1A0A68B2DC25}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TemplateSignalrUIV2", "Signalr\TemplateSignalrUIV2\TemplateSignalrUIV2.csproj", "{8B6F6ECE-08C3-48B5-B2D1-5D73DAF408EB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +21,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{2DDA20BD-70FD-4D8E-84CC-E2DBA69EBFDA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2DDA20BD-70FD-4D8E-84CC-E2DBA69EBFDA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2DDA20BD-70FD-4D8E-84CC-E2DBA69EBFDA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2DDA20BD-70FD-4D8E-84CC-E2DBA69EBFDA}.Release|Any CPU.Build.0 = Release|Any CPU
 		{25CDD898-3B80-465B-B48E-3DEF5369302A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{25CDD898-3B80-465B-B48E-3DEF5369302A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{25CDD898-3B80-465B-B48E-3DEF5369302A}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -29,12 +29,29 @@ Global
 		{2DE05FCF-5FE1-45D0-AF21-045D8FFE79B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2DE05FCF-5FE1-45D0-AF21-045D8FFE79B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2DE05FCF-5FE1-45D0-AF21-045D8FFE79B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DB2DDF8-924C-4931-B26F-C46FA463000B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DB2DDF8-924C-4931-B26F-C46FA463000B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DB2DDF8-924C-4931-B26F-C46FA463000B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DB2DDF8-924C-4931-B26F-C46FA463000B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BACA308F-052C-4954-970E-1A0A68B2DC25}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BACA308F-052C-4954-970E-1A0A68B2DC25}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BACA308F-052C-4954-970E-1A0A68B2DC25}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BACA308F-052C-4954-970E-1A0A68B2DC25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B6F6ECE-08C3-48B5-B2D1-5D73DAF408EB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B6F6ECE-08C3-48B5-B2D1-5D73DAF408EB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B6F6ECE-08C3-48B5-B2D1-5D73DAF408EB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B6F6ECE-08C3-48B5-B2D1-5D73DAF408EB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{2DDA20BD-70FD-4D8E-84CC-E2DBA69EBFDA} = {C2C58170-065F-4EAB-97E9-836C182F9AFA}
 		{25CDD898-3B80-465B-B48E-3DEF5369302A} = {C2C58170-065F-4EAB-97E9-836C182F9AFA}
+		{7DB2DDF8-924C-4931-B26F-C46FA463000B} = {C2C58170-065F-4EAB-97E9-836C182F9AFA}
+		{BACA308F-052C-4954-970E-1A0A68B2DC25} = {C2C58170-065F-4EAB-97E9-836C182F9AFA}
+		{8B6F6ECE-08C3-48B5-B2D1-5D73DAF408EB} = {C2C58170-065F-4EAB-97E9-836C182F9AFA}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5790B7AA-F338-4BD2-87E2-D1CC5BD33A18}
 	EndGlobalSection
 EndGlobal
