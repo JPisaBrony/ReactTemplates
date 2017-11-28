@@ -19,6 +19,7 @@
     "file-loader": "^1.1.5",
     "history": "^4.6.1",
     "jquery": "^3.2.1",
+    "little-loader": "^0.2.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-loading": "^0.1.4",

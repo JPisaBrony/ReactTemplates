@@ -1,17 +1,15 @@
 import React from "react";
+import load from "little-loader";
 
 export default class BingMap extends React.Component {
     createMap() {
-        new Microsoft.Maps.Map("#bing", {
-            credentials: "AuxTsECqnGBG1i2Buq7XZaFjT2g5YelbzQGpVWcNthh6eO3n_DhPLYac8eBs8sfU"
-        });
+        new Microsoft.Maps.Map("#bing", window.mapOptions);
     }
     
     componentDidMount() {
-        var script = document.createElement("script");
-        script.src = "https://www.bing.com/api/maps/mapcontrol?callback=createMap";
-        document.body.appendChild(script);
         window.createMap = this.createMap;
+        window.mapOptions = this.props.options;
+        load("https://www.bing.com/api/maps/mapcontrol?callback=createMap");
     }
     
     render() {
