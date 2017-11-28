@@ -10,7 +10,7 @@ export default class Layout extends React.Component {
                     <div class="col-md-2">
                         <Navigation />
                     </div>
-                    <div class="col-md-8" style={{ textAlign: 'center' }}>
+                    <div class="col-md-8">
                         {this.props.children}
                     </div>
                 </div>
