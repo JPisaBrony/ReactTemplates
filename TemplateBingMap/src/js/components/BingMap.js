@@ -7,26 +7,50 @@ export default class BingMap extends React.Component {
         window.Microsoft = Microsoft;
     }
     
-    createPushPin(addr) {
+    searchMap(loc, callback) {
+        console.log(loc);
         if(addr == null || addr == '')
             return;
         
         window.Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
             var searchManager = new window.Microsoft.Maps.Search.SearchManager(window.map);
-            var requestOptions = {
-                bounds: map.getBounds(),
-                where: addr,
-                callback: function (answer, userData) {
-                    map.setView({ bounds: answer.results[0].bestView });
-                    map.entities.push(new Microsoft.Maps.Pushpin(answer.results[0].location));
-                }
+            var req = {
+                bounds: window.map.getBounds(),
+                where: loc,
+                callback: callback
             };
-            searchManager.geocode(requestOptions);
+            searchManager.geocode(req);
         });
     }
     
-    mapRoute() {
+    centerMap(addr) {
+        this.searchMap(addr,
+            function (resp, data) {
+                window.map.setView({ bounds: resp.results[0].bestView });
+            });
+    }
+    
+    createPushPin(addr) {
+        this.searchMap(addr,
+            function (resp, data) {
+                window.map.setView({ bounds: resp.results[0].bestView });
+                window.map.entities.push(new Microsoft.Maps.Pushpin(resp.results[0].location));
+            });
+    }
+    
+    mapRoute(addrs) {
+        if(addrs == null || typeof addrs == "string" || addrs.length < 1)
+            return;
         
+        Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function() {
+            var directionsManager = new window.Microsoft.Maps.Directions.DirectionsManager(window.map);
+            directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+            for(var i = 0; i < addrs.length; i++) {
+                var waypoint = new window.Microsoft.Maps.Directions.Waypoint({ address: addrs[i] });
+                directionsManager.addWaypoint(waypoint);
+            }
+            directionsManager.calculateDirections();
+        });
     }
     
     componentDidMount() {
