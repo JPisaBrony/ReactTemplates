@@ -50,6 +50,9 @@ export default class Map extends React.Component {
                             <input class="form-control" style={{width: "300px"}} id="addr4" value={this.state.addr4} onChange={(e) => this.fieldChanged(e)} />
                             <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.mapRoute(new Array (this.state.addr3, this.state.addr4)); }}>Map Route</button>
                         </div>
+                        <div class="form-group">
+                            <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.clearRoute(); }}>Clear Route</button>
+                        </div>
                     </div>
                 </div>
             </div>

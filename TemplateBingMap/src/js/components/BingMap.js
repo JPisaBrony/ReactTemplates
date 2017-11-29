@@ -5,6 +5,14 @@ export default class BingMap extends React.Component {
     createMap() {
         window.map = new Microsoft.Maps.Map("#bing", window.mapOptions);
         window.Microsoft = Microsoft;
+        
+        Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
+            window.searchManager = new Microsoft.Maps.Search.SearchManager(window.map);
+        });
+        
+        Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function() {
+            window.directionsManager = new Microsoft.Maps.Directions.DirectionsManager(window.map);
+        });
     }
     
     searchMap(loc, callback) {
@@ -12,29 +20,28 @@ export default class BingMap extends React.Component {
         if(addr == null || addr == '')
             return;
         
-        window.Microsoft.Maps.loadModule('Microsoft.Maps.Search', function () {
-            var searchManager = new window.Microsoft.Maps.Search.SearchManager(window.map);
+        if(searchManager != null) {
             var req = {
-                bounds: window.map.getBounds(),
+                bounds: map.getBounds(),
                 where: loc,
                 callback: callback
             };
             searchManager.geocode(req);
-        });
+        }
     }
     
     centerMap(addr) {
         this.searchMap(addr,
             function (resp, data) {
-                window.map.setView({ bounds: resp.results[0].bestView });
+                map.setView({ bounds: resp.results[0].bestView });
             });
     }
     
     createPushPin(addr) {
         this.searchMap(addr,
             function (resp, data) {
-                window.map.setView({ bounds: resp.results[0].bestView });
-                window.map.entities.push(new Microsoft.Maps.Pushpin(resp.results[0].location));
+                map.setView({ bounds: resp.results[0].bestView });
+                map.entities.push(new Microsoft.Maps.Pushpin(resp.results[0].location));
             });
     }
     
@@ -42,15 +49,19 @@ export default class BingMap extends React.Component {
         if(addrs == null || typeof addrs == "string" || addrs.length < 1)
             return;
         
-        Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function() {
-            var directionsManager = new window.Microsoft.Maps.Directions.DirectionsManager(window.map);
+        if(directionsManager != null) {
             directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
             for(var i = 0; i < addrs.length; i++) {
-                var waypoint = new window.Microsoft.Maps.Directions.Waypoint({ address: addrs[i] });
+                var waypoint = new Microsoft.Maps.Directions.Waypoint({ address: addrs[i] });
                 directionsManager.addWaypoint(waypoint);
             }
             directionsManager.calculateDirections();
-        });
+        }
+    }
+    
+    clearRoute() {
+        if(directionsManager != null)
+            directionsManager.clearAll();
     }
     
     componentDidMount() {
