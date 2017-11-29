@@ -16,8 +16,7 @@ export default class BingMap extends React.Component {
     }
     
     searchMap(loc, callback) {
-        console.log(loc);
-        if(addr == null || addr == '')
+        if(loc == null || loc == '')
             return;
         
         if(searchManager != null) {
