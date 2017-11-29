@@ -46,7 +46,7 @@ export default class BingMap extends React.Component {
     }
     
     mapRoute(addrs) {
-        if(addrs == null || typeof addrs == "string" || addrs.length < 1)
+        if(addrs == null || !(addrs instanceof Array) || addrs.length < 1)
             return;
         
         if(directionsManager != null) {
