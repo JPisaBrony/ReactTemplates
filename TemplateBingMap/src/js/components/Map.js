@@ -11,6 +11,10 @@ export default class Map extends React.Component {
         });
     }
     
+    componentDidMount() {
+        this.bingMap.attachSearch("#addr2", "#container");
+    }
+    
     fieldChanged(e) {
         this.setState({ [e.target.id]: e.target.value });
     }
@@ -27,7 +31,8 @@ export default class Map extends React.Component {
                             height: "500px"
                         }}
                         options={{
-                            credentials: "AuxTsECqnGBG1i2Buq7XZaFjT2g5YelbzQGpVWcNthh6eO3n_DhPLYac8eBs8sfU"
+                            credentials: "AuxTsECqnGBG1i2Buq7XZaFjT2g5YelbzQGpVWcNthh6eO3n_DhPLYac8eBs8sfU",
+                            navigationBarMode: "compact"
                         }}
                         ref={inst => { this.bingMap = inst; }}
                         />
@@ -40,7 +45,7 @@ export default class Map extends React.Component {
                         </div>
                         <div class="form-group">
                             <label>Address</label>
-                            <input class="form-control" style={{width: "300px"}} id="addr2" value={this.state.addr2} onChange={(e) => this.fieldChanged(e)} />
+                            <div id="container"><input class="form-control" style={{width: "300px"}} id="addr2" value={this.state.addr2} onChange={(e) => this.fieldChanged(e)} /></div>
                             <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.centerMap(this.state.addr2); }}>Center Map</button>
                         </div>
                         <div class="form-group">

@@ -4,6 +4,11 @@ import $ from "jquery";
 
 export default class BingMap extends React.Component {
     createMap() {
+        if(window.mapOptions.navigationBarMode === "compact") {
+            var navigationBarMode = Microsoft.Maps.NavigationBarMode;
+            window.mapOptions.navigationBarMode = navigationBarMode.compact;
+        }
+            
         window.map = new Microsoft.Maps.Map("#bing", window.mapOptions);
         window.Microsoft = Microsoft;
         
@@ -13,6 +18,15 @@ export default class BingMap extends React.Component {
         
         Microsoft.Maps.loadModule('Microsoft.Maps.Directions', function() {
             window.directionsManager = new Microsoft.Maps.Directions.DirectionsManager(window.map);
+        });
+        
+        Microsoft.Maps.loadModule('Microsoft.Maps.AutoSuggest', function () {
+            var options = {
+                maxResults: 4,
+                map: map
+            };
+            
+            window.manager = new Microsoft.Maps.AutosuggestManager(options);
         });
     }
     
@@ -96,6 +110,16 @@ export default class BingMap extends React.Component {
                 $("#notificiation").remove();
                 this.state.messsageTriggered = false;
             }, 2500);
+        }
+    }
+    
+    attachSearch(id, container) {
+        if(window.manager != null) {
+            manager.attachAutosuggest(id, container);
+        } else {
+            setTimeout(() => {
+                this.attachSearch(id, container);
+            }, 1000);
         }
     }
     
