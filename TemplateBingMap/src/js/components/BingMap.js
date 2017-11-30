@@ -1,5 +1,6 @@
 import React from "react";
 import load from "little-loader";
+import $ from "jquery";
 
 export default class BingMap extends React.Component {
     createMap() {
@@ -16,14 +17,17 @@ export default class BingMap extends React.Component {
     }
     
     searchMap(loc, callback) {
-        if(loc == null || loc == '')
+        if(loc == null || loc == '') {
+            this.showMessage("Address not supplied");
             return;
+        }
         
         if(searchManager != null) {
             var req = {
                 bounds: map.getBounds(),
                 where: loc,
-                callback: callback
+                callback: callback,
+                errorCallback: () => { this.showMessage("Address not found"); }
             };
             searchManager.geocode(req);
         }
@@ -45,22 +49,45 @@ export default class BingMap extends React.Component {
     }
     
     mapRoute(addrs) {
-        if(addrs == null || !(addrs instanceof Array) || addrs.length < 1)
+        if(addrs == null || !(addrs instanceof Array) || addrs.length < 1) {
+            this.showMessage("Addresses not supplied");
             return;
+        }
+        
+        for(var i = 0; i < addrs.length; i++) {
+            if(addrs[i] == null || addrs[i] == "") {
+                this.showMessage("Addresses not supplied");
+                return;
+            }
+        }
         
         if(directionsManager != null) {
             directionsManager.setRequestOptions({ routeMode: Microsoft.Maps.Directions.RouteMode.driving });
+            console.log(addrs.length);
+            console.log(addrs);
             for(var i = 0; i < addrs.length; i++) {
                 var waypoint = new Microsoft.Maps.Directions.Waypoint({ address: addrs[i] });
                 directionsManager.addWaypoint(waypoint);
             }
             directionsManager.calculateDirections();
+            Microsoft.Maps.Events.addHandler(directionsManager, 'directionsError', (e) => {
+                this.showMessage(e.message);
+            });
         }
     }
     
     clearRoute() {
         if(directionsManager != null)
             directionsManager.clearAll();
+    }
+    
+    showMessage(msg) {
+        $("#bing").append("<div id='notificiation' style='opacity: 0; position: absolute; left: 50%; top: 50%; display:table; height: 50px; width: 100%; transform: translate(-50%, -50%); text-align: center; background-color: #f2f2f2;'><span style='display: table-cell; vertical-align: middle;'>" + msg + "</span></div>");
+        $("#notificiation").animate({ opacity: 1 }, 500);
+        $("#notificiation").delay(1500).animate({ opacity: 0 }, 500);
+        setTimeout(function() {
+            $("#notificiation").remove();
+        }, 2500);
     }
     
     componentDidMount() {
