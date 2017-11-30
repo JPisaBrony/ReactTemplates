@@ -81,6 +81,11 @@ export default class BingMap extends React.Component {
             directionsManager.clearAll();
     }
     
+    clearPushPins() {
+        if(map != null)
+            map.entities.clear();
+    }
+    
     showMessage(msg) {
         $("#bing").append("<div id='notificiation' style='opacity: 0; position: absolute; left: 50%; top: 50%; display:table; height: 50px; width: 100%; transform: translate(-50%, -50%); text-align: center; background-color: #f2f2f2;'><span style='display: table-cell; vertical-align: middle;'>" + msg + "</span></div>");
         $("#notificiation").animate({ opacity: 1 }, 500);

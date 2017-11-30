@@ -54,6 +54,9 @@ export default class Map extends React.Component {
                             <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.clearRoute(); }}>Clear Route</button>
                         </div>
                         <div class="form-group">
+                            <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.clearPushPins(); }}>Clear Push Pins</button>
+                        </div>
+                        <div class="form-group">
                             <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.showMessage("test message"); }}>Show Message</button>
                         </div>
                     </div>
