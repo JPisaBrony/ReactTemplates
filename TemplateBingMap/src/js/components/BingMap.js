@@ -87,15 +87,22 @@ export default class BingMap extends React.Component {
     }
     
     showMessage(msg) {
-        $("#bing").append("<div id='notificiation' style='opacity: 0; position: absolute; left: 50%; top: 50%; display:table; height: 50px; width: 100%; transform: translate(-50%, -50%); text-align: center; background-color: #f2f2f2;'><span style='display: table-cell; vertical-align: middle;'>" + msg + "</span></div>");
-        $("#notificiation").animate({ opacity: 1 }, 500);
-        $("#notificiation").delay(1500).animate({ opacity: 0 }, 500);
-        setTimeout(function() {
-            $("#notificiation").remove();
-        }, 2500);
+        if(this.state.messsageTriggered == false) {
+            this.state.messsageTriggered = true;
+            $("#bing").append("<div id='notificiation' style='opacity: 0; position: absolute; left: 50%; top: 50%; display:table; height: 50px; width: 100%; transform: translate(-50%, -50%); text-align: center; background-color: #f2f2f2;'><span style='display: table-cell; vertical-align: middle;'>" + msg + "</span></div>");
+            $("#notificiation").animate({ opacity: 1 }, 500);
+            $("#notificiation").delay(1500).animate({ opacity: 0 }, 500);
+            setTimeout(() => {
+                $("#notificiation").remove();
+                this.state.messsageTriggered = false;
+            }, 2500);
+        }
     }
     
     componentDidMount() {
+        this.setState({
+            messsageTriggered: false
+        });
         window.createMap = this.createMap;
         window.mapOptions = this.props.options;
         load("https://www.bing.com/api/maps/mapcontrol?callback=createMap");
