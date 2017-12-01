@@ -1,5 +1,6 @@
 import React from "react";
 import BingMap from "./BingMap";
+import $ from "jquery";
 
 export default class Map extends React.Component {
     componentWillMount() {
@@ -24,7 +25,7 @@ export default class Map extends React.Component {
             <div>
                 <h1>MAP</h1>
                 <div class="row">
-                    <div class="col-md-6">
+                    <div class="col-md-8">
                     <BingMap
                         style={{
                             width: "500px",
@@ -37,7 +38,7 @@ export default class Map extends React.Component {
                         ref={inst => { this.bingMap = inst; }}
                         />
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <div class="form-group">
                             <label>Address</label>
                             <input class="form-control" style={{width: "300px"}} id="addr" value={this.state.addr} onChange={(e) => this.fieldChanged(e)} />
@@ -46,7 +47,7 @@ export default class Map extends React.Component {
                         <div class="form-group">
                             <label>Address</label>
                             <div id="container"><input class="form-control" style={{width: "300px"}} id="addr2" value={this.state.addr2} onChange={(e) => this.fieldChanged(e)} /></div>
-                            <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.centerMap(this.state.addr2); }}>Center Map</button>
+                            <button type="button" style={{ marginTop: "10px" }} class="btn btn-default" onClick={() => { this.bingMap.centerMap($("#addr2").val()); }}>Center Map</button>
                         </div>
                         <div class="form-group">
                             <label>Address 1</label>
